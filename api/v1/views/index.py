@@ -20,8 +20,14 @@ def get_status():
 
 @app_views.route("/stats", methods=['GET'], strict_slashes=False)
 def count():
-    objects = {"amenity": Amenity, "city": City,
-           "place": Place, "review": Review, "state": State, "user": User}
+    objects = {
+            "amenity": Amenity,
+            "city": City,
+            "place": Place,
+            "review": Review,
+            "state": State,
+            "user": User
+            }
     new_dict = {}
     for k, v in objects.items():
         new_dict[k] = storage.count(v)
