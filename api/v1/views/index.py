@@ -3,6 +3,12 @@
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 # Define a route on the app_views blueprint
@@ -14,8 +20,9 @@ def get_status():
 
 @app_views.route("/stats", methods=['GET'], strict_slashes=False)
 def count():
-    objects = storage.all()
-    dict = {}
+    objects = {"amenity": Amenity, "city": City,
+           "place": Place, "review": Review, "state": State, "user": User}
+    new_dict = {}
     for k, v in objects.items():
-        num_objs[k] = storage.count(v)
-    return jsonify(dict)
+        new_dict[k] = storage.count(v)
+    return jsonify(new_dict)
