@@ -2,7 +2,7 @@
 """ starts a Flask web application"""
 from models import storage
 from api.v1.views import app_views
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from os import getenv
 
@@ -15,6 +15,12 @@ cors = CORS(app, origins="0.0.0.0")
 def close(self):
     """closed method"""
     storage.close()
+
+
+"""Handler for 404 errors"""
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == '__main__':
