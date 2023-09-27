@@ -37,6 +37,7 @@ def delete_cities(city_id):
         abort(404)
     storage.delete(city)
     storage.save()
+    return jsonify({}, 200)
 
 
 @app_views.route('states/<states_id>/cities',
@@ -73,5 +74,5 @@ def update_cities(city_id):
         if key not in keys_to_ignore:
             setattr(city, key, value)
         storage.save()
-    
+
     return jsonify(city.to_dict()), 200
