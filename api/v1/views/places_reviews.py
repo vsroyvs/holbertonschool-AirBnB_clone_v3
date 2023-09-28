@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""objects that handle all default REStfull api actions for reviews"""
+"""Module to handle Review"""
 from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models import storage
@@ -8,7 +8,7 @@ from models.place import Place
 from models.review import Review
 
 
-@app_views.route('places/<place_id>/reviews',
+@app_views.route('/places/<place_id>/reviews',
                  methods=['GET'], strict_slashes=False)
 def get_place_reviews(place_id):
     """return a review data of a place"""
